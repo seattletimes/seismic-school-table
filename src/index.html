@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_head.html") %>
+  </head>
+  <body>
+
+    <responsive-child>
+
+      <main class="interactive">
+
+        <h1>On shaky ground</h1>
+
+        <p class="chatter">
+          Information on how many Washington schools are built to handle a major quake is tough to find. In the table below, you can search for each school's peak ground acceleration (PGA), soil type, and the construction date for each of its buildings. Data on any retrofits or renovations is unreliable, and has been omitted.
+
+        <nav class="filters">
+          <input class="search" placeholder="Search">
+          <div class="warning">More than 50 results found, refine your search</div>
+          <div class="key">
+            <label><img src="./assets/portable.svg"> Portable building</label>
+            <label><img src="./assets/permanent.svg"> Permanent building</label>
+            <label><div class="building oldest"></div> Built before 1964</label>
+            <label><div class="building old"></div> Built before 1975</label>
+          </div>
+        </nav>
+        
+        <table class="schools">
+          <thead>
+            <tr>
+              <th class="district">District
+              <th class="school">School
+              <th class="pga">PGA
+              <th class="soil">Soil type
+              <th class="buildings">Buildings
+          <tbody class="render-here"></tbody>
+        </table>
+      </main>
+    </responsive-child>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_foot.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>

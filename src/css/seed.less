@@ -1,0 +1,129 @@
+@import "seattletimes";
+
+main.interactive {
+  padding: 20px 0;
+  margin: 20px auto;
+  max-width: 960px;
+  border-top: 1px solid @df-light-gray;
+  border-bottom: 1px solid @df-light-gray;
+  font-family: @df-sans;
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .chatter {
+    font-size: 16px;
+  }
+}
+
+table.schools {
+  font-size: 13px;
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    text-align: left;
+  }
+
+  th, td {
+    padding: 4px;
+  }
+
+  tr:nth-child(2n) td {
+    background: @df-off-white;
+  }
+
+  .buildings {
+    min-width: 200px;
+  }
+
+  .placeholder {
+    padding: 20px;
+    background: @df-light-gray;
+    text-align: center;
+    font-style: italic;
+  }
+}
+
+.building {
+  display: inline-block;
+  vertical-align: middle;
+  background: magenta;
+  margin: 2px;
+  padding: 2px 2px 0;
+  position: relative;
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: white;
+    z-index: 999;
+    width: 150px;
+    box-shadow: 0 8px 4px -2px fade(black, 16%);
+    padding: 4px 8px;
+    border-top: 1px solid @df-light-gray;
+  }
+
+  &:hover, &:focus {
+    .tooltip { display: block }
+  }
+
+  &.oldest {
+    background: @st-dark-red;
+  }
+
+  &.old {
+    background: @st-light-red;
+  }
+
+  &.new {
+    background: @df-light-gray;
+  }
+
+  &::before {
+    display: inline-block;
+  }
+
+  &.permanent::before {
+    content: url("./assets/permanent.svg");
+  }
+
+  &.portable::before {
+    content: url("./assets/portable.svg");
+  }
+}
+
+.filters {
+  .warning {
+    display: none;
+    background: @st-light-red;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  &.excess .warning {
+    display: inline-block;
+  }
+
+  .key {
+    padding: 12px 0;
+    font-size: 14px;
+    text-align: center;
+
+    label {
+      margin-right: 12px;
+    }
+
+    img {
+      vertical-align: middle;
+    }
+
+    .building {
+      height: 14px;
+      width: 14px;
+    }
+  }
+}
