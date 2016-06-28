@@ -18,18 +18,18 @@ var render = function(rows) {
 
   return rows.map(r => {
     return m("tr", [
-      m("td", { class: "district" }, r.district),
-      m("td", { class: "school" }, r.school),
-      m("td", { class: "pga" }, r.pga),
-      m("td", { class: "soil" }, r.soil),
-      m("td", { class: "buildings" }, r.buildings.map(b => {
+      m("td.district", r.district),
+      m("td.school", r.school),
+      m("td.pga", r.pga),
+      m("td.soil", r.soil),
+      m("td.buildings", r.buildings.map(b => {
         var timeframe = b.built < 1964 ? "oldest" : b.built < 1975 ? "old" : "new";
         var title = `${b.building} - built in ${b.built}`;
         return m("div", {
           class: `${timeframe} ${b.type.toLowerCase()} building`,
           title: title
         }, [
-          // m("div", { class: "tooltip" }, title)
+          // m("div.tooltip", title)
         ]);
       }))
     ]);
