@@ -8,6 +8,10 @@ main.interactive {
   border-bottom: 1px solid @df-light-gray;
   font-family: @df-sans;
 
+  @media @mobile {
+    padding: 20px 10px;
+  }
+
   h1 {
     font-size: 20px;
   }
@@ -21,6 +25,7 @@ table.schools {
   font-size: 13px;
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 20px;
 
   th {
     text-align: left;
@@ -28,6 +33,10 @@ table.schools {
 
   th, td {
     padding: 4px;
+
+    @media @mobile {
+      vertical-align: top;
+    }
   }
 
   tr:nth-child(2n) td {
@@ -36,6 +45,10 @@ table.schools {
 
   .buildings {
     min-width: 200px;
+
+    @media @mobile {
+      min-width: auto;
+    }
   }
 
   .placeholder {
@@ -126,4 +139,15 @@ table.schools {
       width: 14px;
     }
   }
+}
+
+.source {
+  font-size: 14px;
+}
+
+.credit {
+  font-size: 14px;
+  float: right;
+  text-transform: uppercase;
+  font-style: italic;
 }

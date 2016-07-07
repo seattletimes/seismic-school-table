@@ -13,17 +13,17 @@ const LIMIT = 50;
 
 var render = function(rows) {
   if (!rows.length) {
-    return m("tr", [m("td", { class: "placeholder", colspan: 20 }, "Search to find schools")]);
+    return m("tr", [m("td.placeholder[colspan=20]", "Search to find schools")]);
   }
 
   return rows.map(r => {
     return m("tr", [
       m("td.district", r.district),
       m("td.school", r.school),
-      m("td.pga", r.pga),
+      m("td.pga", r.pga ? (r.pga * 1).toFixed(1) + "%" : "-"),
       m("td.soil", r.soil),
       m("td.buildings", r.buildings.map(b => {
-        var timeframe = b.built < 1964 ? "oldest" : b.built < 1975 ? "old" : "new";
+        var timeframe = b.built < 1975 ? "oldest" : b.built < 1994 ? "old" : "new";
         var title = `${b.building} - built in ${b.built}`;
         return m("div", {
           class: `${timeframe} ${b.type.toLowerCase()} building`,
@@ -46,10 +46,10 @@ worker.onmessage = function(message) {
   var searchBox = document.querySelector(".search");
 
   var run = debounce(function() {
-    var query = searchBox.value;
+    var query = searchBox.value.toLowerCase();
     var subset = !query ? [] : data.parsed.filter(function(r) {
-      if (r.district.toLowerCase().indexOf(query) > -1) return true;
-      if (r.school.toLowerCase().indexOf(query) > -1) return true;
+      if (r.searchDistrict.indexOf(query) > -1) return true;
+      if (r.searchSchool.indexOf(query) > -1) return true;
       return false;
     });
     if (subset.length > LIMIT) {
